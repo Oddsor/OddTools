@@ -89,6 +89,9 @@ class Listbox(tk.Frame):
     def selection_set(self, indstart, indend):
         self.lister.selection_set(indstart, indend)
 
+    def add_onclick(self, action):
+        self.lister.bind('<<ListboxSelect>>', action)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
