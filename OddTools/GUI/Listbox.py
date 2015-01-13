@@ -14,7 +14,7 @@ class Listbox(tk.Frame):
         boxframe = tk.Frame(self)
         scrollbar = tk.Scrollbar(boxframe, orient=tk.VERTICAL)
         self.lister = tk.Listbox(boxframe, yscrollcommand=scrollbar.set)
-        self.lister.config(height=height)
+        self.lister.config(height=height, exportselection=False)
         scrollbar.config(command=self.lister.yview)
         scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
         if data is not None and data is not False:

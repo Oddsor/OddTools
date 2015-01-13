@@ -2,7 +2,7 @@ __author__ = 'Odd'
 
 import tkinter as tk
 
-def fileselect(root, path, dir=True, func=None):
+def fileselect(root, path, dir=True, func=None, save=False, filetypes=None):
     '''
     :param root: The root frame in which to insert the file select
     :param path: The file or directory path in a stringvar
@@ -15,11 +15,15 @@ def fileselect(root, path, dir=True, func=None):
     entry = tk.Entry(file_frame, textvariable=path)
 
     def open_file():
-        if dir:
+        if dir and not save:
             newpath = tk.filedialog.askdirectory(initialdir=path.get())
-        else:
+        elif not save:
             newpath = tk.filedialog.askopenfilename(initialfile=path.get())
-
+        if save:
+            if filetypes is None:
+                newpath = tk.filedialog.asksaveasfilename()
+            else:
+                newpath = tk.filedialog.asksaveasfilename(initialdir=path.get(),defaultextension=filetypes[0], filetypes=filetypes)
         if entry.get() != newpath and newpath != '':
             path.set(newpath)
 
