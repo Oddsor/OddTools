@@ -17,11 +17,11 @@ class Dialog(Toplevel):
 
         self.result = None
 
+        self.buttonbox()
+
         body = Frame(self)
         self.initial_focus = self.body(body)
-        body.pack(padx=5, pady=5)
-
-        self.buttonbox()
+        body.pack(side=TOP, padx=5, pady=5)
 
         self.grab_set()
 
@@ -52,7 +52,7 @@ class Dialog(Toplevel):
 
         box = Frame(self)
 
-        w = Button(box, text="OK", width=10, command=self.ok, default=ACTIVE)
+        w = self.ok_button = Button(box, text="OK", width=10, command=self.ok, default=ACTIVE)
         w.pack(side=LEFT, padx=5, pady=5)
         w = Button(box, text="Cancel", width=10, command=self.cancel)
         w.pack(side=LEFT, padx=5, pady=5)
@@ -60,7 +60,7 @@ class Dialog(Toplevel):
         self.bind("<Return>", self.ok)
         self.bind("<Escape>", self.cancel)
 
-        box.pack()
+        box.pack(side=BOTTOM)
 
     #
     # standard button semantics
