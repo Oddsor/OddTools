@@ -61,12 +61,17 @@ class Listbox(tk.Frame):
             retur.append(self.order[item])
         return retur
 
-    def add_data(self, listd):
-        self.list = list(listd)
-        self.order = list(range(0, len(listd)))
+    def add_data(self, list_of_items):
+        """
+
+        :param list_of_items:
+        :return:
+        """
+        self.list = list(list_of_items)
+        self.order = list(range(0, len(list_of_items)))
         self.lister.delete(0, tk.END)
         for item in self.list:
-            self.lister.insert(tk.END, item)
+            self.lister.insert(tk.END, item if not isinstance(item, tuple) else item[0])
 
     def move_up(self, index):
         if index > 0:
