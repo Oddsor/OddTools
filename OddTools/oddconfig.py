@@ -26,10 +26,3 @@ def get_setting(key, section='DEFAULT'):
         return config[section][key]
     else:
         raise Exception("Key " + key + " not found in config file. " + str(read_files))
-
-
-def set_setting(key, value, section='DEFAULT'):
-    if not config.has_section(section):
-        config.add_section(section)
-    config[section][key] = value
-    config.write(open("settings.ini", 'w'))
